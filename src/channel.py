@@ -26,6 +26,38 @@ class Channel:
         self.video_count: int = int(self.channel['items'][0]['statistics']['videoCount'])  # количество видео
         self.viewCount: int = int(self.channel['items'][0]['statistics']['viewCount'])  # просмотры
 
+    def __str__(self):
+        """ название(ссылка) """
+        return f"{self.title} ({self.url})"
+
+    def __add__(self, other) -> int:
+        """ Количество подписчиков общее """
+        return self.subscriberCount + other.subscriberCount
+
+    def __sub__(self, other) -> int:
+        """ Разница подписчиков двух каналов """
+        return self.subscriberCount - other.subscriberCount
+
+    def __gt__(self, other) -> bool:
+        """ Результат сравнения '>' количества подписчиков двух каналов """
+        return self.subscriberCount > other.subscriberCount
+
+    def __ge__(self, other) -> bool:
+        """ Результат сравнения '>=' количества подписчиков двух каналов """
+        return self.subscriberCount >= other.subscriberCount
+
+    def __lt__(self, other) -> bool:
+        """ Результат сравнения '<' количества подписчиков двух каналов """
+        return self.subscriberCount < other.subscriberCount
+
+    def __le__(self, other) -> bool:
+        """ Результат сравнения '<=' количества подписчиков двух каналов """
+        return self.subscriberCount <= other.subscriberCount
+
+    def __eq__(self, other) -> bool:
+        """ Проверка равенства подписчиков """
+        return self.subscriberCount == other.subscriberCount
+
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
         print(json.dumps(self.channel, indent=2, ensure_ascii=False))
