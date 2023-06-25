@@ -28,11 +28,14 @@ class Video:
             self.like_count: int = video['items'][0]['statistics']['likeCount']  # количество лайков
 
     def __str__(self) -> str:
+        """Возвращает название видео """
         return self.title
 
 
 class PLVideo(Video):
+    """Класс для видео и плейлиста, является подклассом класса Video"""
 
     def __init__(self, video_id, pl_id):
+        """Экземпляр инициализируется по id видео и id плейлиста"""
         super().__init__(video_id)
-        self.pl_id = pl_id
+        self.pl_id = pl_id  # id плейлиста
